@@ -25,24 +25,21 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public User getUserByName(String firstname) {
-        return entityManager.createQuery("select u from User u where u.owner = :firstname", User.class)
-                .setParameter("firstname", firstname).getSingleResult();
+    public User getUserByName(String owner) {
+        return entityManager.createQuery("select u from User u where u.owner = :owner", User.class)
+                .setParameter("owner", owner).getSingleResult();
     }
 
-    @Transactional
     @Override
     public void addUser(User user) {
         entityManager.persist(user);
     }
 
-    @Transactional
     @Override
     public void updateUser(User newUser) {
         entityManager.merge(newUser);
     }
 
-    @Transactional
     @Override
     public void deleteUser(long id) {
         entityManager.remove(getUserById(id));

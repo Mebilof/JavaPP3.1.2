@@ -19,6 +19,12 @@
     <label for="password">Password: </label>
     <input type="text" th:field="*{password}" id="password"/>
     <br/>
+    <label for="roleEdit">Role</label>
+    <select  class="custom-select" multiple id="roleEdit" name="newRoles[]" required>
+        <option value="ROLE_ADMIN">Admin</option>
+        <option value="ROLE_USER">User</option>
+    </select>
+
 
     <input type="submit" value="Create"/>
 </form>

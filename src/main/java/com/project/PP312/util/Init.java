@@ -22,10 +22,12 @@ public class Init {
 
     @PostConstruct
     public void init(){
-        Role role = new Role("ROLE_ADMIN");
-        roleService.addRole(role);
+        Role roleAdmin = new Role("ROLE_ADMIN");
+        Role roleUser = new Role("ROLE_USER");
+        roleService.addRole(roleAdmin);
+        roleService.addRole(roleUser);
         Set<Role> roles = new HashSet<>();
-        roles.add(role);
-        userService.addUser(new User("Michael", "White Sebring", "2004", "admin", roles));
+        roles.add(roleAdmin);
+        userService.addUser(new User("1", "White Sebring", "2004", "1", roles));
     }
 }
