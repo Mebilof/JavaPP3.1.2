@@ -49,22 +49,10 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/user")
-    public String checkUser(User user) {
-        return "redirect:/user";
-    }
-
-    @GetMapping("/user/{userName}")
-    public String viewUserProfile(@PathVariable("userName") String username,
-                                  Model model, Authentication authentication) {
-        Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if(roles.contains("ROLE_ADMIN") || authentication.getName().equals(username)){
-            User user = userService.getUserByName(username);
-            model.addAttribute("user",user);
-            model.addAttribute("userRoles",roles);
-            return "user";
-        }
-        return "redirect:/user";
+    @GetMapping("/user/{id}")
+    public String checkUser(@PathVariable("id") int id, ModelMap model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user";
     }
 
     @GetMapping("/admin/{id}/edit")
