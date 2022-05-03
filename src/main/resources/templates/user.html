@@ -8,10 +8,6 @@
 <body>
 <div class="col-9">
     <h1>User info view</h1>
-    <nav class="nav nav-tabs">
-        <a class="nav-link active" href="/admin">Users table</a>
-
-    </nav>
     <div>
         <table class="table table-striped">
             <thead>
@@ -20,26 +16,18 @@
                 <th scope="col">Name</th>
                 <th scope="col">Car</th>
                 <th scope="col">Year</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Role</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${user}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.owner}"></td>
-                <td th:text="${user.car}"></td>
-                <td th:text="${user.year}"></td>
+            <tr>
+                <td th:text="${user.getId()}"></td>
+                <td th:text="${user.getOwner()}"></td>
+                <td th:text="${user.getCar()}"></td>
+                <td th:text="${user.getYear()}"></td>
                 <td>
-                    <div sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a th:href="@{user-update/{id}(id=${user.id})}" class="btn btn-info btn-sm"
-                           role="button" >Edit</a>
-                    </div>
-                </td>
-                <td>
-                    <div sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a th:href="@{user-delete/{id}(id=${user.id})}" class="btn btn-danger btn-sm"
-                           role="button">Delete</a>
+                    <div th:each="role : ${user.getRoles()}">
+                        <p th:text="${role.getRole()}"></p>
                     </div>
                 </td>
             </tr>

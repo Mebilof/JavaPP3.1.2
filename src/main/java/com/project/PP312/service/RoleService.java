@@ -4,5 +4,5 @@ import com.project.PP312.model.Role;
 
 public interface RoleService {
     void addRole(Role role);
-    Role getRoleByName(Role role);
+    Role getRoleByName(String name);
 }
